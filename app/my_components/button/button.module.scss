@@ -1,7 +1,7 @@
 @import "./color.scss";
 
 .container {
-    width: 220px;
+    width: 400px;
     height: 60px;
     background-color: $primaryBgColor;
     color: $primaryColor;
@@ -12,6 +12,8 @@
     display: flex;
     justify-content: start;
     align-content: center;
+    align-self: center;
+
 }
 
 .myicon {
