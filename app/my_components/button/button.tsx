@@ -3,20 +3,29 @@
 import { GoArrowRight } from "react-icons/go";
 import styles from "./button.module.scss"; 
 
+type buttonProps = {
+    onClick: () => void;
+    onKeyPress?: () => void;
+}
 
-export default function Button() {
+export default function Button({onClick} : buttonProps) {
 
     let classes = [] 
+  
 
     return (
         <div className={styles.container}>
-            <button className={styles.mybutton}> 
-
+            <button 
+            onClick={onClick}
+            // onKeyPress={onkeypress}
+            > 
+    
+            
                 <GoArrowRight className={styles.myicon}/> 
                 Add Task
 
             </button>
-        </div>
+        </div> 
     );
 
 }

@@ -3,17 +3,21 @@
 
 import {useState} from "react";
 import styles from "./input.module.scss";
+import classes from "../button/button.module.scss";
 import Button from "../button/button";
-import { NodeNextRequest } from "next/dist/server/base-http/node";
 
 
 export default function Input() {
 
+    type tasksType = {
+        task : string;
+        tasks : string[]};
 
 
 
     const [task, setTask] = useState("");
-    const [tasks, setTasks] = useState(["krk","20 axali sityva", "250", "notoM","20 axali sityva", "250", "notoM"]);
+    const [tasks, setTasks] = useState<tasksType["tasks"]>([]);
+
 
 
     const onChange = (e : any) => {
@@ -28,9 +32,9 @@ export default function Input() {
 
     }
 
-    console.log(`tasks are ${tasks}`)
-    console.log(`task is ${task}`)
+                
 
+    
 
 
 
@@ -41,17 +45,20 @@ export default function Input() {
             <input type="text" 
             className={styles.myInput}
             placeholder="add Task"
+            value={task}
+            onChange={onChange}
             />
-            <Button />
+            <Button onClick={addTasks}
+            // onKeyPress={(e) => e.key === 'Enter' && addTasks()}
+            />
  
             <ul>
                 {
-                tasks.map(v => 
-                    <li className={styles.mylist}>
+                tasks.map((v, i) =>  
+                    <li key={i} className={styles.mylist}>
                         {v}
                         
-                    </li> )
-                    
+                    </li> )  
                 }
 
             </ul>

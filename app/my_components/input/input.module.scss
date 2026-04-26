@@ -1,20 +1,26 @@
 @import "../button/color.scss";
 
-.container {
-    position: absolute;
-
+body {
     display: flex;
-    justify-self: center;
-    align-self: center;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.container {
+    position: relative;
+    display: flex;
     width: 430px;
-    min-height: 400px;
+    height: 400px;
     background-color: white;
     border-radius: 8px;
     flex-direction: column;
     justify-content: space-evenly;
     align-content: center;
-
-
+    border : 2px solid red;
+    max-height: 500px;
+    overflow-y: scroll;
+    overflow-x: hidden;
 }
 
 
@@ -22,11 +28,11 @@
     align-self: center;
     width: 400px;
     height: 55px;
+    min-height: 50px;
     border-radius: 18px;
     border: 2px solid black;
     font-size: 23px;
     margin-bottom: 15px;
-
 }
 
 
@@ -36,7 +42,6 @@
     justify-self: start;
     font-size: 35px;
     margin-bottom: 15px;
-
 }
 
 .mylist {   
@@ -44,8 +49,5 @@
     font-size: 20px;
     left: 40px;
     list-style: disc;
-    // list-style: none;
-
-
-
+    list-style: decimal;
 }
