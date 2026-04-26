@@ -1,10 +1,10 @@
-@import "./color.scss";
+@import "../color.scss";
 
 .container {
     width: 400px;
     height: 60px;
-    background-color: $primaryBgColor;
-    color: $primaryColor;
+    background-color: $buttonBgColor;
+    color: $buttonColor;
     font-size: 23px;
     box-sizing: border-box;
     padding-left: 17px;
