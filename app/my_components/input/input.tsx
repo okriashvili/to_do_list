@@ -3,40 +3,33 @@
 
 import {useState} from "react";
 import styles from "./input.module.scss";
-import classes from "../button/button.module.scss";
 import Button from "../button/button";
+
+import TaskList from "../task_list/taskList";
+
+// icons
+import Edit from "../icons/edit/edit";
+import Delete from "../icons/delete/delete";
 
 
 export default function Input() {
 
     type tasksType = {
         task : string;
-        tasks : string[]};
-
-
+        tasks : string[]
+    };
 
     const [task, setTask] = useState("");
     const [tasks, setTasks] = useState<tasksType["tasks"]>([]);
 
-
-
     const onChange = (e : any) => {
         setTask(e.target.value);
-
     }
-
 
     const addTasks = () => {
         setTasks([...tasks, task]);
         setTask("");
-
     }
-
-                
-
-    
-
-
 
     return (
         <div className={styles.container}>
@@ -55,14 +48,16 @@ export default function Input() {
             <ul>
                 {
                 tasks.map((v, i) =>  
-                    <li key={i} className={styles.mylist}>
-                        {v}
-                        
+                    <li key={i} 
+                        className={`${styles.mylist} ${styles.ulContainer}`}>
+                        {v} 
+                        < Edit />
+                        < Delete />
+                       
                     </li> )  
                 }
-
+          
             </ul>
-
         </div>
     )
 }

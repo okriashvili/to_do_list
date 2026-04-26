@@ -14,13 +14,10 @@ export default function Button({onClick} : buttonProps) {
   
 
     return (
-        <div className={styles.container}>
+        <div className={styles.container} onClick={onClick}>
             <button 
-            onClick={onClick}
             // onKeyPress={onkeypress}
             > 
-    
-            
                 <GoArrowRight className={styles.myicon}/> 
                 Add Task
 
