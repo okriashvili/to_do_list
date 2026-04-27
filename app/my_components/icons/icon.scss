@@ -8,25 +8,37 @@
 
 .editIcon {
     right: 10px;
-
 }
 
 .deleteIcon {
     right: 50px;
 }
 
+.doneIcon {
+    right: 90px;
+}
 
+
+
+
+
+// hoovers and animations
 .editIcon:hover {
     color: blue;
     animation: shake 0.3s ease-in-out; 
 }
 
-
 .deleteIcon:hover {
     color: #ef4444;
     animation: shake 0.3s ease-in-out; 
-
 }
+
+.doneIcon:hover {
+    color: #22c55e;
+    animation: shake 0.3s ease-in-out; 
+}
+
+
 @keyframes shake {
   0%, 25% { transform: translateX(0); }
   25%, 50% { transform: translateX(-1px); }
