@@ -11,7 +11,6 @@ export default function Done({onClick} : iconProps) {
     return (
         <>
             <MdDone
-
                 className={`${style.taskIcons} ${style.doneIcon}`}
                 onClick={onClick}
             />

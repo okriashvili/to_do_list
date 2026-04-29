@@ -1,23 +1,25 @@
 "use client";
 
-import styles from "./taskList.module.css";
+import styles from "./taskList.module.scss";
+import { ReactNode } from "react";
 
 type taskProps = {
-    children : string[] | number[];
+    task: string;
+    children?: ReactNode;
+    done?: boolean;
 }
 
+export default function TaskList(props : taskProps) {
+    const classes = [styles.mylist];
 
-export default function TaskList(children : taskProps) {
+    if (props.done) {
+        classes.push(styles.taskDone);
+    }
 
     return (
-        <ul className={styles.mylist}>
-            {children.children.map((child, index) => (
-                <li key={index}>{child}</li>
-            ))}
-        </ul>
-
-
+        <li className={classes.join(" ").trim()}>
+            <span className={styles.taskText}>{props.task}</span>
+            {props.children}
+        </li>
     )
-
-
 }

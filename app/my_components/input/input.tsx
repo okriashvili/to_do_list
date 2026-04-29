@@ -3,9 +3,14 @@
 
 import {useState} from "react";
 import styles from "./input.module.scss";
-import Button from "../button/button";
 
+
+// my coomponents
+import Button from "../button/button";
 import TaskList from "../task_list/taskList";
+
+
+
 
 // icons
 import Edit from "../icons/edit/edit";
@@ -15,23 +20,28 @@ import Done from "../icons/done/done";
 
 export default function Input() {
 
+    type Task = {
+        text: string;
+        done: boolean;
+    };
+
     type tasksType = {
         task : string;
-        tasks : string[];
+        tasks : Task[];
         id: string;
         taskToRemove: string;
     };
 
     const [task, setTask] = useState("");
-    const [tasks, setTasks] = useState<tasksType["tasks"]>([]);
+    const [tasks, setTasks] = useState<Task[]>([]);
 
 
 
     const editTask = (index: number) => {
-        const newTask = prompt("Edit Task", tasks[index]);
+        const newTask = prompt("Edit Task", tasks[index].text);
         if (newTask !== null) {
             const updatedTasks = [...tasks];
-            updatedTasks[index] = newTask;
+            updatedTasks[index].text = newTask;
             setTasks(updatedTasks);
         }
     };
@@ -43,7 +53,7 @@ export default function Input() {
 
     // add the value to tasks array and clear the input field
     const addTasks = () => {
-        setTasks(prev => [...prev, task]);
+        setTasks(prev => [...prev, { text: task, done: false }]);
         setTask("");
     }
 
@@ -58,6 +68,14 @@ export default function Input() {
     // removes the task from list
     const removeTask = (index: number) => {
         setTasks(prev => prev.filter((_, idx) => idx !== index));
+    };
+
+
+    // mark task as done
+    const markAsDone = (index: number) => {
+        const updatedTasks = [...tasks];
+        updatedTasks[index].done = !updatedTasks[index].done;
+        setTasks(updatedTasks);
     };
 
 
@@ -76,21 +94,22 @@ export default function Input() {
             // onKeyPress={(e) => e.key === 'Enter' && addTasks()}
             />
 
-            {/*  
-            <ul>
-                {
-                tasks.map((v, i) =>  
-                    <li key={i} 
-                        className={`${styles.mylist} ${styles.ulContainer}`}>
-                        {v} 
-                        < Edit onClick={() => {}} />  
-                        < Delete onClick={() => removeTask(i)} />                        < Delete onClick={() => removeTask(i)} />
-                       
-                    </li> )  
-                }
-            </ul> */}
+            {
+                tasks.map((v, i) => 
+                    <TaskList 
+                        key={i}
+                        task={v.text}
+                        done={v.done}>
+                        <div className={styles.iconContainer}>
+                            <Edit onClick={() => editTask(i)} />  
+                            <Delete onClick={() => removeTask(i)} />
+                            <Done onClick={() => markAsDone(i)} />  
+                        </div>
+                    </TaskList>
+                )
+            }
 
-            <ul>
+            {/* <ul>
                 {
                 tasks.map((v, i) =>  
                     <li key={i} 
@@ -102,7 +121,10 @@ export default function Input() {
                        
                     </li> )  
                 }
-            </ul>
+            </ul> */}
+
+
+
         </div>
     )
 }
